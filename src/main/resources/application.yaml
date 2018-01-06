@@ -1,0 +1,13 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        use-new-id-generator-mappings: true
+        hbm2ddl:
+          auto: create
+          import_files_sql_extractor: org.hibernate.tool.hbm2ddl.MultipleLinesSqlCommandExtractor
+
+  datasource:
+    data: classpath*:database/import-h2.sql
