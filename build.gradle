@@ -29,7 +29,8 @@ apply plugin: 'kotlin-spring'
 apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'net.ltgt.apt'
-apply plugin: "kotlin-jpa"
+apply plugin: 'kotlin-jpa'
+apply plugin: 'kotlin-kapt'
 
 group = 'com.github.nowakprojects'
 version = '0.0.1'
@@ -74,7 +75,7 @@ dependencies {
     compile("io.springfox:springfox-swagger-ui:${swaggerVersion}")
     //MapStruct
     compile("org.mapstruct:mapstruct-jdk8:${mapStructVersion}")
-    apt "org.mapstruct:mapstruct-processor:${mapStructVersion}"
+    kapt "org.mapstruct:mapstruct-processor:${mapStructVersion}"
     compileOnly "org.mapstruct:mapstruct-processor:${mapStructVersion}"
 
     //Dependencies for testing

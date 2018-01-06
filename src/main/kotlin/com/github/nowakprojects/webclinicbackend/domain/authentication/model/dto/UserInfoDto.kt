@@ -4,7 +4,7 @@ import com.github.nowakprojects.webclinicbackend.domain.address.persistence.enti
 import java.time.LocalDate
 
 data class UserInfoDto(
-        val id: Long,
+        val id: Long?,
         val pesel: String,
         val email: String,
         val firstName: String,
@@ -12,5 +12,5 @@ data class UserInfoDto(
         val dateOfBirth: LocalDate?,
         val address: Address?
 ) {
-    constructor() : this(-1, "", "", "", "", null, null)
+    constructor() : this(null, "", "", "", "", null, null)
 }
