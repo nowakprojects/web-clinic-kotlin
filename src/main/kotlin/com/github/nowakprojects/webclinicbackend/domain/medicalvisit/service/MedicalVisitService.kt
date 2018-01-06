@@ -13,7 +13,17 @@ class MedicalVisitService(
         repository: MedicalVisitRepository
 ) : DeletableEntityService<MedicalVisit, MedicalVisitRepository>(repository, MEDICAL_VISIT_NOT_FOUND) {
 
-    fun findAllByDoctorEmployeeIdAndPlannedDate(doctorEmployeeId: Long, plannedDate: LocalDate)
+    fun findAllMedicalVisitByDoctorEmployeeIdAndPlannedDate(doctorEmployeeId: Long, plannedDate: LocalDate)
             = repository.findAllByDoctorEmployeeIdAndPlannedDate(doctorEmployeeId, plannedDate)
+
+    fun cancelMedicalVisitById(medicalVisitId: Long): MedicalVisit
+            = tryToModifyNotDeletedById(medicalVisitId, { cancelled = true })
+
+    fun startMedicalVisitById(medicalVisitId: Long): MedicalVisit
+            = tryToModifyNotDeletedById(medicalVisitId, { startDateTime = LocalDateTime.now() })
+
+    fun finishMedicalVisitById(medicalVisitId: Long): MedicalVisit
+            = tryToModifyNotDeletedById(medicalVisitId, { endDateTime = LocalDateTime.now() })
+
 
 }

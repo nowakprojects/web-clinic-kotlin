@@ -9,6 +9,9 @@ abstract class DeletableEntityService<T : DeletableEntity, R : DeletableEntityRe
         protected val entityNotFoundErrorCode: DomainException.ErrorCode
 ) {
 
+    protected fun tryToModifyNotDeletedById(id: Long, apply: T.() -> Unit) =
+            repository.save(tryToFindNotDeletedById(id).apply(apply))
+
     fun tryToFindNotDeletedById(id: Long) = tryToFindOneByQuery { repository.findOneByIdAndDeletedIsFalse(id) }
 
     protected fun tryToFindOneByQuery(query: () -> T?): T = query() ?: throw DomainException.of(entityNotFoundErrorCode)
