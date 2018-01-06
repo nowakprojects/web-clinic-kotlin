@@ -11,7 +11,7 @@ import java.util.Objects.nonNull
 import javax.persistence.Entity
 import javax.persistence.OneToOne
 import javax.validation.constraints.NotNull
-
+//TODO: Add room field
 @Entity
 data class MedicalVisit(
 

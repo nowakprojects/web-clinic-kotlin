@@ -10,6 +10,8 @@ interface DeletableEntityRepository<T : DeletableEntity> : BaseEntityRepository<
 
     fun findOneByIdAndDeletedIsFalse(id: Long): T?
 
+    fun findAllByDeletedIsFalse(): List<T>
+
     override fun delete(entity: T) {
         entity.deleted = false
         save(entity)

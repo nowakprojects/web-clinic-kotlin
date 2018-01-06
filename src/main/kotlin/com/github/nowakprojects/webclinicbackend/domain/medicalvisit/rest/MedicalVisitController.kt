@@ -1,6 +1,7 @@
 package com.github.nowakprojects.webclinicbackend.domain.medicalvisit.rest
 
 import com.github.nowakprojects.webclinicbackend.domain.authentication.persistence.entity.User
+import com.github.nowakprojects.webclinicbackend.domain.medicalvisit.mapper.MedicalVisitMapper
 import com.github.nowakprojects.webclinicbackend.domain.medicalvisit.persistence.entity.MedicalVisit
 import com.github.nowakprojects.webclinicbackend.domain.medicalvisit.service.MedicalVisitService
 import com.github.nowakprojects.webclinicbackend.global.annotation.LoggedUser
@@ -11,7 +12,8 @@ import java.time.LocalDate
 @RequestMapping("/api/v1/medical-visit")
 @RestController
 class MedicalVisitController(
-        private val medicalVisitService: MedicalVisitService
+        private val medicalVisitService: MedicalVisitService,
+        private val medicalVisitMapper: MedicalVisitMapper
 ) {
 
     @GetMapping("/today")
@@ -23,11 +25,11 @@ class MedicalVisitController(
     fun getAllMedicalVisitsPlannedOnSelectedDayForLoggedDoctor(
             @LoggedUser loggedDoctor: User,
             @RequestParam(required = false) day: LocalDate = LocalDate.now())
-            = medicalVisitService.findAllMedicalVisitByDoctorEmployeeIdAndPlannedDate(loggedDoctor.id!!, day)
+            = medicalVisitMapper.toMedicalVisitBasicInfoDtoList(medicalVisitService.findAllMedicalVisitByDoctorEmployeeIdAndPlannedDate(loggedDoctor.id!!, day))
 
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @PostMapping("/{medicalVisitId}")
+    @PostMapping("cancel/{medicalVisitId}")
     fun cancelMedicalVisitById(medicalVisitId: Long) {
         medicalVisitService.cancelMedicalVisitById(medicalVisitId)
     }
@@ -43,5 +45,4 @@ class MedicalVisitController(
     fun finishMedicalVisitById(medicalVisitId: Long) {
         medicalVisitService.finishMedicalVisitById(medicalVisitId)
     }
-
 }
