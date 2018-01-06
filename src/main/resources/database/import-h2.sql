@@ -1,3 +1,8 @@
+
+INSERT INTO address VALUES
+  (1, '2016-01-01', NULL, 'Wrocław', 'Polska', '20', 'Radosna', '51-123'),
+  (2, '2016-01-01', NULL, 'Wrocław', 'Polska', '11/3', 'Mickiewicza', '51-222');
+
 INSERT INTO user
 VALUES (1, '2017-08-27', NULL, FALSE, NULL, '1996-08-23', 'kontakt.mateusznowak@gmail.com', 'Mateusz',
            '$2a$10$3eWtzQGWcvNeZWNx3TYVAezxdOvbWPWP/2sIYjWrw9F21GBbZknD2', 'Nowak', FALSE, '122122122', 1),
@@ -41,7 +46,3 @@ INSERT INTO medical_visit VALUES
   (3, '2018-01-01', NULL, FALSE, NULL, FALSE, NULL, CURRENT_DATE, DATEADD('HOUR', 3, CURRENT_TIME), NULL, 1, 3),
   (4, '2018-01-01', NULL, FALSE, NULL, FALSE, NULL, CURRENT_DATE, DATEADD('HOUR', 4, CURRENT_TIME), NULL, 1, 4),
   (5, '2018-01-01', NULL, FALSE, NULL, FALSE, NULL, CURRENT_DATE, DATEADD('HOUR', 5, CURRENT_TIME), NULL, 1, 5);
-
-INSERT INTO address VALUES
-  (1, '2016-01-01', NULL, 'Wrocław', 'Polska', '20', 'Radosna', '51-123'),
-  (2, '2016-01-01', NULL, 'Wrocław', 'Polska', '11/3', 'Mickiewicza', '51-222');
