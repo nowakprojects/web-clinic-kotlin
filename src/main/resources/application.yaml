@@ -11,3 +11,5 @@ spring:
 
   datasource:
     data: classpath*:database/import-h2.sql
+server:
+  port: 8081
