@@ -3,6 +3,7 @@ buildscript {
         aptVersion = '0.10'
         assertjVersion = '3.8.0'
         hibernateVersion = '5.2.12.Final'
+        jacksonDataTypeVersion = '2.9.3'
         kotlinVersion = '1.2.10'
         mapStructVersion = '1.2.0.Final'
         mockitoVersion = '2.11.0'
@@ -30,7 +31,6 @@ apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'net.ltgt.apt'
 apply plugin: 'kotlin-jpa'
-apply plugin: 'kotlin-kapt'
 
 group = 'com.github.nowakprojects'
 version = '0.0.1'
@@ -77,11 +77,13 @@ dependencies {
     compile("org.mapstruct:mapstruct-jdk8:${mapStructVersion}")
     kapt "org.mapstruct:mapstruct-processor:${mapStructVersion}"
     compileOnly "org.mapstruct:mapstruct-processor:${mapStructVersion}"
+    //Jackson
+    compile group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: "${jacksonDataTypeVersion}"
 
     //Dependencies for testing
     testCompile('org.springframework.boot:spring-boot-starter-test')
     testCompile('org.springframework.security:spring-security-test')
     testCompile "org.assertj:assertj-core:${assertjVersion}"
-    testCompile ("org.mockito:mockito-core:${mockitoVersion}")
+    testCompile("org.mockito:mockito-core:${mockitoVersion}")
 }
 
