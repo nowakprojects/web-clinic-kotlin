@@ -8,6 +8,7 @@ import java.time.LocalTime
 import javax.validation.constraints.NotNull
 
 data class MedicalVisitBasicInfoDto(
+        var id: Long,
         var doctor: UserInfoDto,
         var patientCard: PatientCardDto,
         var plannedDate: LocalDate,
@@ -18,5 +19,5 @@ data class MedicalVisitBasicInfoDto(
         var tookPlace: Boolean = false,
         var inProgress: Boolean = false
 ) {
-    constructor() : this(UserInfoDto(), PatientCardDto(), LocalDate.now(), LocalTime.now(), null, null)
+    constructor() : this(-1, UserInfoDto(), PatientCardDto(), LocalDate.now(), LocalTime.now(), null, null)
 }
