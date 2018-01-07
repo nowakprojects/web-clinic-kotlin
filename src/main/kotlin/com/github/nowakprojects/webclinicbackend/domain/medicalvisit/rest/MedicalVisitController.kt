@@ -27,22 +27,25 @@ class MedicalVisitController(
             @RequestParam(required = false) day: LocalDate = LocalDate.now())
             = medicalVisitMapper.toMedicalVisitBasicInfoDtoList(medicalVisitService.findAllMedicalVisitByDoctorEmployeeIdAndPlannedDate(loggedDoctor.id!!, day))
 
+    @GetMapping
+    fun getMedicalVisitById(@PathVariable medicalVisitId: Long)
+            = medicalVisitMapper.toMedicalVisitBasicInfoDto(medicalVisitService.tryToFindNotDeletedById(medicalVisitId))
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PostMapping("cancel/{medicalVisitId}")
-    fun cancelMedicalVisitById(medicalVisitId: Long) {
+    fun cancelMedicalVisitById(@PathVariable medicalVisitId: Long) {
         medicalVisitService.cancelMedicalVisitById(medicalVisitId)
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PostMapping("/start/{medicalVisitId}")
-    fun startMedicalVisitById(medicalVisitId: Long) {
+    fun startMedicalVisitById(@PathVariable medicalVisitId: Long) {
         medicalVisitService.startMedicalVisitById(medicalVisitId)
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PostMapping("/finish/{medicalVisitId}")
-    fun finishMedicalVisitById(medicalVisitId: Long) {
+    fun finishMedicalVisitById(@PathVariable medicalVisitId: Long) {
         medicalVisitService.finishMedicalVisitById(medicalVisitId)
     }
 }

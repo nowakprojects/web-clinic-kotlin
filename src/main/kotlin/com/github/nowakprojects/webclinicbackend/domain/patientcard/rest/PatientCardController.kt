@@ -4,6 +4,7 @@ import com.github.nowakprojects.webclinicbackend.domain.patientcard.mapper.Patie
 import com.github.nowakprojects.webclinicbackend.domain.patientcard.service.PatientCardService
 import org.springframework.context.annotation.Configuration
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
@@ -19,7 +20,7 @@ class PatientCardController(
             = patientCardMapper.toPatientCardDtoList(patientCardService.findAllPatientCard())
 
     @GetMapping("/{patientId}")
-    fun getPatientCardByPatientId(patientId: Long)
+    fun getPatientCardByPatientId(@PathVariable patientId: Long)
             = patientCardMapper.toPatientCardDto(patientCardService.tryToFindPatientCardByPatientId(patientId))
 
 
