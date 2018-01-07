@@ -11,6 +11,7 @@ import java.util.Objects.nonNull
 import javax.persistence.Entity
 import javax.persistence.OneToOne
 import javax.validation.constraints.NotNull
+
 //TODO: Add room field
 @Entity
 data class MedicalVisit(
@@ -41,4 +42,43 @@ data class MedicalVisit(
     fun tookPlace(): Boolean = nonNull(startDateTime) && nonNull(endDateTime)
 
     fun inProgress(): Boolean = nonNull(startDateTime) && isNull(endDateTime)
+
+    class Builder {
+        var doctor: Doctor? = null
+            private set
+
+        var patientCard: PatientCard? = null
+            private set
+
+        var plannedDate: LocalDate? = null
+            private set
+
+        var plannedTime: LocalTime? = null
+            private set
+
+        var startDateTime: LocalDateTime? = null
+            private set
+
+        var endDateTime: LocalDateTime? = null
+            private set
+
+        var cancelled: Boolean = false
+            private set
+
+        fun doctor(doctor: Doctor) = apply {this.doctor = doctor}
+
+        fun patientCard(patientCard: PatientCard) = apply {this.patientCard = patientCard}
+
+        fun plannedDate(plannedDate: LocalDate) = apply {this.plannedDate = plannedDate}
+
+        fun plannedTime(plannedTime: LocalTime) = apply {this.plannedTime = plannedTime}
+
+        fun startDateTime(startDateTime: LocalDateTime) = apply {this.startDateTime = startDateTime}
+
+        fun endDateTime(endDateTime: LocalDateTime) = apply {this.endDateTime = endDateTime}
+
+        fun cancelled(cancelled: Boolean) = apply {this.cancelled = cancelled}
+
+        fun build() = MedicalVisit(doctor!!,patientCard!!,plannedDate!!,plannedTime!!,startDateTime, endDateTime, cancelled)
+    }
 }
