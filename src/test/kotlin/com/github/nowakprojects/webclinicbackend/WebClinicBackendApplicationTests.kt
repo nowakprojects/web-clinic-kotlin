@@ -10,7 +10,7 @@ import org.springframework.test.context.junit4.SpringRunner
 class WebClinicBackendApplicationTests {
 
 	@Test
-	fun contextLoads() {
+	fun `Spring context test`() {
 	}
 
 }

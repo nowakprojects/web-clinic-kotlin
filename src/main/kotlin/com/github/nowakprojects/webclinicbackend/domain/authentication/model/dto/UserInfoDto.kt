@@ -4,13 +4,13 @@ import com.github.nowakprojects.webclinicbackend.domain.address.persistence.enti
 import java.time.LocalDate
 
 data class UserInfoDto(
-        val id: Long,
-        val pesel: String,
-        val email: String,
-        val firstName: String,
-        val lastName: String,
-        val dateOfBirth: LocalDate?,
-        val address: Address?
+        var id: Long,
+        var pesel: String,
+        var email: String,
+        var firstName: String,
+        var lastName: String,
+        var dateOfBirth: LocalDate?,
+        var address: Address?
 ) {
     constructor() : this(-1, "", "", "", "", null, null)
 }

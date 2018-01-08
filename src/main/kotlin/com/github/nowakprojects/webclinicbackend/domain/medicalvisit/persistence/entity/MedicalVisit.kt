@@ -3,13 +3,15 @@ package com.github.nowakprojects.webclinicbackend.domain.medicalvisit.persistenc
 import com.github.nowakprojects.webclinicbackend.domain.abstraction.persistence.entity.DeletableEntity
 import com.github.nowakprojects.webclinicbackend.domain.employee.persistence.entity.Doctor
 import com.github.nowakprojects.webclinicbackend.domain.patientcard.persistence.entity.PatientCard
+import java.time.LocalDate
 import java.time.LocalDateTime
+import java.time.LocalTime
 import java.util.Objects.isNull
 import java.util.Objects.nonNull
 import javax.persistence.Entity
 import javax.persistence.OneToOne
 import javax.validation.constraints.NotNull
-
+//TODO: Add room field
 @Entity
 data class MedicalVisit(
 
@@ -22,18 +24,21 @@ data class MedicalVisit(
         var patientCard: PatientCard,
 
         @NotNull
-        var plannedDate: LocalDateTime,
+        var plannedDate: LocalDate,
 
-        var startDate: LocalDateTime?,
+        @NotNull
+        var plannedTime: LocalTime,
 
-        var endDate: LocalDateTime?,
+        var startDateTime: LocalDateTime?,
+
+        var endDateTime: LocalDateTime?,
 
         var cancelled: Boolean = false
 ) : DeletableEntity() {
 
-    constructor() : this(Doctor(), PatientCard(), LocalDateTime.now(), null, null)
+    constructor() : this(Doctor(), PatientCard(), LocalDate.now(), LocalTime.now(), null, null)
 
-    fun tookPlace(): Boolean = nonNull(startDate) && nonNull(endDate)
+    fun tookPlace(): Boolean = nonNull(startDateTime) && nonNull(endDateTime)
 
-    fun inProgress(): Boolean = nonNull(startDate) && isNull(endDate)
+    fun inProgress(): Boolean = nonNull(startDateTime) && isNull(endDateTime)
 }

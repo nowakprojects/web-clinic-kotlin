@@ -6,7 +6,8 @@ private constructor(val errorCode: ErrorCode, cause: Throwable?) : RuntimeExcept
 
     enum class ErrorCode {
         USER_NOT_FOUND,
-        MEDICAL_VISIT_NOT_FOUND
+        MEDICAL_VISIT_NOT_FOUND,
+        PATIENT_CARD_NOT_FOUND
     }
 
     companion object {

@@ -12,8 +12,9 @@ class OAuth2ResourceServerConfig : ResourceServerConfigurerAdapter() {
 
     @Throws(Exception::class)
     override fun configure(http: HttpSecurity) {
-        http.authorizeRequests()
-                .antMatchers("/", "/user/**", "/console/**", "/swagger-ui.html", "/console/*")
+        http.cors().and().
+                authorizeRequests()
+                .antMatchers("/", "/user/**", "/console/**", "/swagger-ui.html", "/console/*", "/oauth/token")
                 .permitAll()
                 .antMatchers("/api/v1/medical-visit/**")
                 .authenticated()
