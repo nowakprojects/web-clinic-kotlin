@@ -5,9 +5,23 @@ import com.github.nowakprojects.webclinicbackend.domain.authentication.model.dto
 import com.github.nowakprojects.webclinicbackend.domain.employee.persistence.entity.Doctor
 import org.mapstruct.Mapper
 import org.mapstruct.Mapping
+import org.mapstruct.factory.Mappers
 
 @Mapper(componentModel = "spring", uses = [UserMapper::class])
 abstract class EmployeeMapper {
+
+    //DP: Singleton
+    companion object {
+        var INSTANCE: EmployeeMapper? = null
+        get(){
+            if(INSTANCE == null){
+                INSTANCE = Mappers.getMapper(EmployeeMapper::class.java)
+            }
+            return INSTANCE
+        }
+    }
+
+    fun getInstance() = EmployeeMapper.INSTANCE;
 
     fun toUserInfoDto(doctor: Doctor): UserInfoDto =
             UserInfoDto(
@@ -19,4 +33,5 @@ abstract class EmployeeMapper {
                     dateOfBirth = doctor.employee.dateOfBirth,
                     address = doctor.employee.address
             )
+
 }

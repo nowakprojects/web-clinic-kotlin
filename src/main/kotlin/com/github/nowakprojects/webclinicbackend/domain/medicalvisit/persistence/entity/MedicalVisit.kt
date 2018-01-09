@@ -43,6 +43,7 @@ data class MedicalVisit(
 
     fun inProgress(): Boolean = nonNull(startDateTime) && isNull(endDateTime)
 
+    //DP: Builder
     class Builder {
         var doctor: Doctor? = null
             private set
