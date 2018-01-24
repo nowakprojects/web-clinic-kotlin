@@ -24,6 +24,4 @@ class MedicalVisitService(
 
     fun finishMedicalVisitById(medicalVisitId: Long): MedicalVisit
             = tryToModifyNotDeletedById(medicalVisitId, { endDateTime = LocalDateTime.now() })
-
-
 }
