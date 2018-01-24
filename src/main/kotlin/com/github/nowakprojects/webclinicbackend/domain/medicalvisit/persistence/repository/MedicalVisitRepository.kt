@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository
 import java.time.LocalDate
 import java.time.LocalDateTime
 
+//DP: Repository
 @Repository
 interface MedicalVisitRepository : DeletableEntityRepository<MedicalVisit> {
     fun findAllByDoctorEmployeeIdAndPlannedDate(doctorEmployeeId: Long, visitPlannedDate: LocalDate): List<MedicalVisit>
